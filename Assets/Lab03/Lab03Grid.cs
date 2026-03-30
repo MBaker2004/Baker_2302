@@ -46,7 +46,7 @@ public class Lab03Grid : DrawableGrid
         sceneIndex = AddScene("Diamond: 20, 10");
         newGraph = new DrawDiamond();
         newGraph.Scale = new Vector3(20, 10, 1);
-        newGraph.Roation = 45; //for next lecture
+        newGraph.Roation = 45 * Mathf.Deg2Rad; //for next lecture
         AddObjectToScene(sceneIndex, newGraph);
 
         sceneIndex = AddScene("Parabola1: y = x^2");

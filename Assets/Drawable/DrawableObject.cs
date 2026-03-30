@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Drawing.Glint;
 using System;
 
 [Serializable]
@@ -79,7 +78,8 @@ public class DrawableObject
         translatedLine.end.z *= Scale.z;
 
         // Rotate
-
+        translatedLine.start = RotatePoint(Vector3.zero, translatedLine.start, Roation);
+        translatedLine.end = RotatePoint(Vector3.zero, translatedLine.end, Roation);
 
         // Position
         translatedLine.start += Position;
@@ -106,9 +106,19 @@ public class DrawableObject
         Vector3 result = Vector3.zero;
 
         result.x = PointAtZero.x * Mathf.Cos(angleInRadians) - PointAtZero.y * Mathf.Sin(angleInRadians);
-
-        result.y = PointAtZero.x * Mathf.Sin(angleInRadians) - PointAtZero.y * Mathf.Cos(angleInRadians);
+        result.y = PointAtZero.x * Mathf.Sin(angleInRadians) + PointAtZero.y * Mathf.Cos(angleInRadians);
 
         return (result + center);
     }
+
+    public float GetRotationinDegrees()
+    {
+        return (Roation * Mathf.Rad2Deg);
+    }
+
+    public void SetRotationinDegrees(float degrees)
+    {
+        Roation = (degrees * Mathf.Deg2Rad);
+    }
+
 }
