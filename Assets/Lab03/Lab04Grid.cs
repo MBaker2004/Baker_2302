@@ -40,6 +40,11 @@ public class Lab04Grid : DrawableGrid
         newGraph = new RotatingDiamond();
         newGraph.Scale = new Vector3(20, 10, 1);
         AddObjectToScene(sceneIndex, newGraph);
+
+        sceneIndex = AddScene("Facing Box");
+        newGraph = new FacingBox();
+        newGraph.Scale = new Vector3(10, 10, 1);
+        AddObjectToScene(sceneIndex, newGraph);
     }
 
 }
