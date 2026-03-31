@@ -233,10 +233,12 @@ MonoBehaviour:
   lineColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   divisionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   isDrawingObjects: 1
-  isDrawingTheGrid: 1
-  isDrawingOrigin: 1
+  isDrawingTheGrid: 0
+  isDrawingOrigin: 0
   isDrawingAxis: 1
-  isDrawingDivisions: 1
+  isDrawingDivisions: 0
+  isTickAllScenes: 0
+  MousePosition: {x: 0, y: 0}
   SceneIndex: 0
   SceneListName: []
 --- !u!1 &796140856
