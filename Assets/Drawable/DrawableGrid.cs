@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class DrawableGrid : MonoBehaviour
 {
+    public static DrawableGrid Instance;
 
     public Vector3 screenSize;
     public Vector3 origin;
@@ -25,10 +26,18 @@ public class DrawableGrid : MonoBehaviour
     public bool isDrawingOrigin = true;
     public bool isDrawingAxis = true;
     public bool isDrawingDivisions = true;
+    public bool isTickAllScenes = false;
+
+    public Vector2 MousePosition = Vector2.zero;
 
     public int SceneIndex = 0; 
     public List<List<DrawableObject>> SceneList;
     public List<string> SceneListName;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -47,10 +56,36 @@ public class DrawableGrid : MonoBehaviour
 
     void Update()
     {
-        GetInput(); 
+        GetInput();
+
+        TickScenes();
+
         DrawGrid();
 
         DrawScene(); 
+    }
+
+    public void TickScenes()
+    {
+        if (isTickAllScenes)
+        {
+            foreach (List<DrawableObject> scene in SceneList)
+            {
+                TickThisScene(scene);
+            }
+        }
+        else
+        {
+            TickThisScene(SceneList[SceneIndex]);
+        }
+    }
+
+    public void TickThisScene(List<DrawableObject> scene)
+    {
+        foreach(DrawableObject obj in scene)
+        {
+            obj.Tick();
+        }
     }
 
     public void SelectNextScene()
@@ -154,10 +189,12 @@ public class DrawableGrid : MonoBehaviour
             return;
         }
 
+        MousePosition = mouse.position.ReadValue();
+
         // Place the Origin 
         if (mouse.middleButton.isPressed)
         {
-            origin = mouse.position.ReadValue();
+            origin = MousePosition;
         }
 
         // Check Mouse Scroll Wheel and update Grid Size

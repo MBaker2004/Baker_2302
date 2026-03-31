@@ -35,6 +35,11 @@ public class Lab04Grid : DrawableGrid
         newGraph.Scale = new Vector3(20, 10, 1);
         newGraph.SetRotationinDegrees(90);
         AddObjectToScene(sceneIndex, newGraph);
+
+        sceneIndex = AddScene("Rotating Diamond");
+        newGraph = new RotatingDiamond();
+        newGraph.Scale = new Vector3(20, 10, 1);
+        AddObjectToScene(sceneIndex, newGraph);
     }
 
 }
