@@ -27,8 +27,10 @@ public class DrawableGrid : MonoBehaviour
     public bool isDrawingAxis = true;
     public bool isDrawingDivisions = true;
     public bool isTickAllScenes = false;
+    public bool isTickScenes = true;
+    public bool isTickGrids = true;
 
-    public Vector2 MousePosition = Vector2.zero;
+    public Vector3 MousePosition = Vector3.zero;
 
     public int SceneIndex = 0; 
     public List<List<DrawableObject>> SceneList;
@@ -58,6 +60,8 @@ public class DrawableGrid : MonoBehaviour
     {
         GetInput();
 
+        TickGrid();
+
         TickScenes();
 
         DrawGrid();
@@ -65,8 +69,15 @@ public class DrawableGrid : MonoBehaviour
         DrawScene(); 
     }
 
+   
+
     public void TickScenes()
     {
+        if (!isTickScenes)
+        {
+            return;
+        }
+
         if (isTickAllScenes)
         {
             foreach (List<DrawableObject> scene in SceneList)
@@ -86,6 +97,20 @@ public class DrawableGrid : MonoBehaviour
         {
             obj.Tick();
         }
+    }
+
+    public void TickGrid()
+    {
+        if (!isTickGrids)
+        {
+            return;
+        }
+        Tick();
+    }
+
+    public virtual void Tick()
+    {
+
     }
 
     public void SelectNextScene()

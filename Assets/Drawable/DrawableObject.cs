@@ -91,6 +91,13 @@ public class DrawableObject
     public static float V3ToAngle(Vector3 startPoint, Vector3 endPoint)
     {
         Vector3 lineVector = endPoint - startPoint;
+        return Mathf.Atan2(lineVector.y, lineVector.x);
+
+    }
+
+    public static float V3ToAngleInDegrees(Vector3 startPoint, Vector3 endPoint)
+    {
+        Vector3 lineVector = endPoint - startPoint;
         float radians = Mathf.Atan2(lineVector.y, lineVector.x);
         return (radians * Mathf.Rad2Deg);
     }
