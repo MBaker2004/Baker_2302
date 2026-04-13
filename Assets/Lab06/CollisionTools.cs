@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 using Rect = System.Drawing.Rectangle;
@@ -51,14 +52,30 @@ public static class CollisionTools
         return result; 
     }
 
-    public static bool IsPointInRectangle(Vector3 Point, Rect Rectangle)
+    public static bool IsPointInRectangle(Vector3 Point, Rect Box)
     {
-        // stub code 
+        return (Point.x > Box.X) && (Point.x < (Box.X + Box.Width))
+            && (Point.y > Box.Y) && (Point.y < (Box.Y + Box.Height));
+    }
+    public static bool SameSide(Vector3 P1, Vector3 P2, Vector3 A, Vector3 B)
+    {
+        Vector3 cp1 = Vector3.Cross(B - A, P1 - A);
+        Vector3 cp2 = Vector3.Cross(B - A, P2 - A);
+        if(Vector3.Dot(cp1, cp2) >= 0)
+        {
+            return true;
+        }
         return false;
     }
+
     public static bool IsPointInTriangle(Vector3 Point, TriangleData Triangle)
     {
-        // stub code 
-        return false;
+        if (  SameSide(Point, Triangle.PointA, Triangle.PointB, Triangle.PointC ) &&
+              SameSide(Point, Triangle.PointB, Triangle.PointA, Triangle.PointC ) &&
+              SameSide(Point, Triangle.PointC, Triangle.PointA, Triangle.PointB )    )
+        {
+            return true; 
+        }
+        return false; 
     }
 }

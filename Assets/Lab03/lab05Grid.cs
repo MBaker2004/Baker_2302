@@ -71,6 +71,6 @@ public class lab05Grid : DrawableGrid
         DrawLine(ellipseRadiusLine);
         DrawingTools.DrawEllipse(DrawTestPoint, ellipseAxis * gridSize, 12, Color.gray);
 
-        ellipseObject.Roation = offset * 5;
+        ellipseObject.Roation = offset * 15 * Mathf.Deg2Rad;
     }
 }
