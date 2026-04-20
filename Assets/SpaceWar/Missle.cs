@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Missle : MovingObject
 {
-    public float MoveSpeed = 50f; 
+    public float MoveSpeed = 35f;
 
     public override void Initalize()
     {
@@ -12,6 +12,7 @@ public class Missle : MovingObject
         AddLineToObject(new Vector3(-2, 2, 0), new Vector3(-1, 0, 0), Color.yellow);
         AddLineToObject(new Vector3(-1, 0, 0), new Vector3(-2, -2, 0), Color.yellow);
         AddLineToObject(new Vector3(-2, -2, 0), new Vector3(2, 0, 0), Color.yellow);
+
 
     }
 
